@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  nearestdevs-api:
+    build: .
+    ports:
+      - "3333:3333"
+    command: yarn dev
+    environment:
+      NODE_ENV: development
