@@ -1,0 +1,27 @@
+{
+  "name": "nearestdevs-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.19.1",
+    "core-js": "^3.6.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "global": "^4.4.0",
+    "mongoose": "^5.8.9",
+    "regenerator-runtime": "^0.13.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2"
+  }
+}
