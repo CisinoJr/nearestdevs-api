@@ -5,9 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
-    "start": "node src/index.js",
     "test": "jest",
-    "build": "mkdir dist && babel src -s -d dist"
+    "build-babel": "babel -d ./build ./src -s",
+    "clean": "rm -rf build && mkdir build",
+    "build": "yarn run clean && yarn run build-babel",
+    "start": "yarn run build && node ./build/index.js"
   },
   "dependencies": {
     "axios": "^0.19.1",
