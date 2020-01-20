@@ -2,9 +2,26 @@ version: "3"
 
 services:
   nearestdevs-api:
+    image: nearestdevs-api-rest
     build: .
+    networks:
+      - backend
     ports:
       - "3333:3333"
+    volumes:
+      - ./:/usr/src/app
+
     command: yarn dev
+
     environment:
       NODE_ENV: development
+
+  web-cli:
+    image: nearestdevs-api-rest
+    networks:
+      - backend
+    command: sh
+
+networks:
+  backend:
+    driver: bridge

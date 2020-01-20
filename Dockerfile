@@ -1,12 +1,12 @@
 FROM node:12.14.1-alpine
 
-WORKDIR /usr/app
+WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
-
-RUN yarn
 
 COPY . .
 
+RUN yarn
+
 EXPOSE 3333
 
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]

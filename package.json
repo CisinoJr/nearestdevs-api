@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "build": "mkdir dist && babel src -s -d dist"
   },
   "dependencies": {
     "axios": "^0.19.1",
