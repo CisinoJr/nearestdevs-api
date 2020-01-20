@@ -12,6 +12,7 @@
     "start": "yarn run build && node ./build/index.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.8.3",
     "axios": "^0.19.1",
     "core-js": "^3.6.4",
     "cors": "^2.8.5",
@@ -24,6 +25,7 @@
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
     "@babel/node": "^7.8.3",
+    "@babel/plugin-transform-async-to-generator": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "jest": "^24.9.0",
     "nodemon": "^2.0.2"
