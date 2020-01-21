@@ -2,9 +2,11 @@ import axios from 'axios';
 import ErrorMessage from '../utils/ErrorMessage';
 import parseStringAsArray from '../utils/parseStringAsArray';
 
-const Dev = require('../models/Dev');
-
 axios.defaults.adapter = require('axios/lib/adapters/http');
+
+const { findConnections, sendMessage } = require('../../config/websocket');
+
+const Dev = require('../models/Dev');
 
 export default class DevService {
 
@@ -37,8 +39,8 @@ export default class DevService {
   async save(devInfo) {
     try {
       const { github_username, techs, latitude, longitude } = devInfo;
-
       const exists = await this.devExists(github_username);
+
       if (exists) {
         throw new ErrorMessage(400, "Desenvolvedor já cadastrado na plataforma!", 'Validation');
       }
@@ -55,6 +57,12 @@ export default class DevService {
         techs: techsArray,
         location,
       });
+
+      // Filter devs
+      const sendSocketMessageTo = findConnections({ latitude, longitude }, techsArray);
+
+      // Send message to client using socket
+      sendMessage(sendSocketMessageTo, 'new-dev', dev);
 
       return dev;
     } catch (error) {
@@ -75,6 +83,6 @@ export default class DevService {
 
   async devExists(github_username) {
     const dev = await Dev.findOne({ github_username });
-    return dev;
+    return !!dev;
   }
 }

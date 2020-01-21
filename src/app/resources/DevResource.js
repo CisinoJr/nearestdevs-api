@@ -20,7 +20,8 @@ export default class DevResource {
 
       return response.status(200).json(dev);
     } catch (error) {
-      response.status(error.code).send(error);
+      console.log(error);
+      return response.status(error.code ? error.code : 500).send(error);
     }
   }
 
