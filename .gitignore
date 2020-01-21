@@ -105,3 +105,5 @@ dist
 
 # Ignore VsCode folder
 .vscode/
+
+build/
