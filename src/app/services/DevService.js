@@ -39,7 +39,7 @@ export default class DevService {
   async save(devInfo) {
     try {
       const { github_username, techs, latitude, longitude } = devInfo;
-      const exists = await this.devExists(github_username);
+      const exists = await this.isDeveloperRegistered(github_username);
 
       if (exists) {
         throw new ErrorMessage(400, "Desenvolvedor já cadastrado na plataforma!", 'Validation');
@@ -81,7 +81,7 @@ export default class DevService {
     }
   }
 
-  async devExists(github_username) {
+  async isDeveloperRegistered(github_username) {
     const dev = await Dev.findOne({ github_username });
     return !!dev;
   }
