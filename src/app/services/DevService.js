@@ -45,13 +45,13 @@ export default class DevService {
         throw new ErrorMessage(400, "Desenvolvedor já cadastrado na plataforma!", 'Validation');
       }
 
-      const { name = login, avatar_url, bio } = await this.getGithubInfo(github_username);
+      const { name, avatar_url, bio, login } = await this.getGithubInfo(github_username);
       const techsArray = parseStringAsArray(techs, ',');
       const location = { type: 'Point', coordinates: [longitude, latitude], };
 
       const dev = await Dev.create({
         github_username,
-        name,
+        name: name || login, // Atribui o login caso o usuário não possua um nome no github
         avatar_url,
         bio,
         techs: techsArray,
