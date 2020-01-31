@@ -77,7 +77,7 @@ export default class DevService {
 
       return apiResponse.data;
     } catch (error) {
-      throw new ErrorMessage(401, `Dev não encontrado no github`, 'Bad Credentials');
+      throw new ErrorMessage(400, `Dev não encontrado no github`, 'Bad Credentials');
     }
   }
 
